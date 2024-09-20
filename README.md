@@ -12,5 +12,11 @@ The following tools will be used for the challenge:
 
 ---
 - [itau-qae-challenge](#itau-qae-challenge)
+- [Ion site feature files (Gherkin)](#ion-site-feature-files-gherkin)
 
+
+---
+# Ion site feature files (Gherkin)
+The [IonSiteSpecs](/IonSiteSpecs/) folder will contain the .feature files for https://ion.itau/ site.  
+These files will be used to declare the user stories and scenarios for the site.
 
