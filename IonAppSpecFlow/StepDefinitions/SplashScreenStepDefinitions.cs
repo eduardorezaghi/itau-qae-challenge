@@ -13,6 +13,7 @@ namespace IonAppSpecFlow.StepDefinitions
         private SplashPage _splashPage;
         private LoginPage _loginPage;
         private CreateAccountPage _createAccountPage;
+        private HelpCenterPage _helpCenterPage;
 
         public SplashScreenStepDefinitions(IObjectContainer objectContainer)
         {
@@ -21,6 +22,7 @@ namespace IonAppSpecFlow.StepDefinitions
             _splashPage = new SplashPage(_driver);
             _loginPage = new LoginPage(_driver);
             _createAccountPage = new CreateAccountPage(_driver);
+            _helpCenterPage = new HelpCenterPage(_driver);
         }
 
 
@@ -62,6 +64,9 @@ namespace IonAppSpecFlow.StepDefinitions
                     break;
                 case "tela de recuperação de senha":
                     Assert.IsTrue(true);
+                    break;
+                case "tela de central de ajuda":
+                    Assert.IsTrue(_helpCenterPage.IsScreenDisplayed());
                     break;
                 default:
                     throw new ArgumentException(
