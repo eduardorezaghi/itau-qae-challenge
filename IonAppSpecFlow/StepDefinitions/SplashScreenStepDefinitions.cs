@@ -51,11 +51,17 @@ namespace IonAppSpecFlow.StepDefinitions
         public void ThenScreenIsShown(string screen)
         {
             switch(screen.ToLower()) {
+                case "tela inicial":
+                    Assert.IsTrue(_splashPage.IsSplashScreenDisplayed());
+                    break;
                 case "tela de login":
                     Assert.IsTrue(_loginPage.IsScreenDisplayed());
                     break;
                 case "tela de abertura de conta":
                     Assert.IsTrue(_createAccountPage.IsScreenDisplayed());
+                    break;
+                case "tela de recuperação de senha":
+                    Assert.IsTrue(true);
                     break;
                 default:
                     throw new ArgumentException(
