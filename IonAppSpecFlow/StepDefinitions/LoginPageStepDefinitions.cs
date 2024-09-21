@@ -14,6 +14,7 @@ namespace IonAppSpecFlow.StepDefinitions
         private LoginPage _loginPage;
         private CreateAccountPage _createAccountPage;
         private string _button;
+        private string _icon;
 
         public LoginPageStepDefinitions(IObjectContainer objectContainer)
         {
@@ -45,6 +46,30 @@ namespace IonAppSpecFlow.StepDefinitions
             Assert.IsInstanceOf<string>(_button);
         }
 
+        [Given("desejo validar o ícone de (.*)")]
+        public void WhenUserWantsToValidateIcon(string icon)
+        {
+            _icon = icon;
+            Assert.IsInstanceOf<string>(icon);
+        }
+
+        [When("informar uma (.*) inválida")]
+        public void WhenUserEntersInvalid(string field)
+        {
+            switch(field.ToLower()) {
+                case "agência":
+                    _loginPage.EnterAgency("0000");
+                    break;
+                case "conta":
+                    _loginPage.EnterAccount("000000");
+                    break;
+                default:
+                    throw new ArgumentException(
+                        $"Field '{field}' is not recognized"
+                    );
+            }
+        }
+
         [When("iniciar a validação")]
         public void WhenUserClicks()
         {   
@@ -61,6 +86,20 @@ namespace IonAppSpecFlow.StepDefinitions
                 default:
                     throw new ArgumentException(
                         $"Button '{_button}' is not recognized"
+                    );
+            }
+        }
+
+        [When("clicar no ícone de (.*)")]
+        public void WhenUserClicksIcon(string icon)
+        {
+            switch(icon.ToLower()) {
+                case "ajuda":
+                    _loginPage.ClickHelpIcon();
+                    break;
+                default:
+                    throw new ArgumentException(
+                        $"Icon '{icon}' is not recognized"
                     );
             }
         }
@@ -90,6 +129,18 @@ namespace IonAppSpecFlow.StepDefinitions
         public void ThenForgotPasswordButtonIsDisplayed()
         {
             Assert.IsTrue(_loginPage.AssertForgotPasswordButtonIsDisplayedAndDisabled());
+        }
+
+        [Then("uma mensagem de erro deve ser exibida")]
+        public void ThenErrorMessageIsDisplayed()
+        {
+            Assert.IsTrue(_loginPage.AssertErrorMessageIsDisplayed());
+        }
+
+        [Then("valide a mensagem exibida")]
+        public void ThenValidateMessage()
+        {
+            Assert.IsTrue(_loginPage.AssertInvalidLoginData());
         }
 
     }
