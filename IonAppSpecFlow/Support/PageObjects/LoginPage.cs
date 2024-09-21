@@ -1,12 +1,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Android.UiAutomator;
-using OpenQA.Selenium.Support.Extensions;
-using OpenQA.Selenium.Appium.Interfaces;
-using NUnit.Framework;
 using System.Text.RegularExpressions;
-using NUnit.Framework.Constraints;
 
 namespace IonAppSpecFlow.StepDefinitions
 {
@@ -18,12 +13,37 @@ namespace IonAppSpecFlow.StepDefinitions
         private readonly By accountField = MobileBy.Id("com.itau.investimentos:id/accountEditText");
         private readonly By accountPasswordField = MobileBy.Id("com.itau.investimentos:id/passwordEditText");
         private readonly By forgotPasswordButton = MobileBy.Id("com.itau.investimentos:id/forgotPasswordButton");
+        private readonly By helpIcon = MobileBy.Id("com.itau.investimentos:id/helpButton");
+
+        // Error elements
+        private readonly By errorSnackbar = MobileBy.Id("com.itau.investimentos:id/errorView");
+        private readonly By errorTextView = MobileBy.Id("com.itau.investimentos:id/errorMessageTextView");
 
         public LoginPage(AndroidDriver driver) : base(driver) { }
 
         public void ClickBackButton()
         {
             ClickElement(backButton);
+        }
+
+        public void ClickForgotPasswordButton()
+        {
+            ClickElement(forgotPasswordButton);
+        }
+
+        public void ClickHelpIcon()
+        {
+            ClickElement(helpIcon);
+        }
+
+        public void EnterAgency(string text)
+        {
+            WriteText(agencyField, text);
+        }
+
+        public void EnterAccount(string text)
+        {
+            WriteText(accountField, text);
         }
 
         public bool IsScreenDisplayed()
@@ -68,6 +88,20 @@ namespace IonAppSpecFlow.StepDefinitions
                 default:
                     throw new ArgumentException($"Label '{label}' is not recognized");
             }
+        }
+
+        public bool? AssertErrorMessageIsDisplayed()
+        {
+            return IsElementDisplayed(errorSnackbar);
+        }
+
+        public bool? AssertInvalidLoginData()
+        {
+            var isError = IsElementDisplayed(errorSnackbar);
+            var isValidErrorMessage = AssertText(errorTextView, new Regex("agência ou conta incorreta", RegexOptions.IgnoreCase));
+
+            return isError && isValidErrorMessage;
+
         }
     }
 }
