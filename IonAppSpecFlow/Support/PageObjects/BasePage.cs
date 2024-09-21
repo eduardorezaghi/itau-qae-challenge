@@ -1,10 +1,7 @@
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 using NUnit.Framework;
-using OpenQA.Selenium.Appium.Enums;
 using System.Text.RegularExpressions;
 
 namespace IonAppSpecFlow.StepDefinitions
@@ -24,6 +21,17 @@ namespace IonAppSpecFlow.StepDefinitions
         protected void ClickElement(By by)
         {
             driver.FindElement(by).Click();
+        }
+
+        protected string WriteText(By by, string text)
+        {
+            WebElement element = driver.FindElement(by);
+            var oldText = element.Text;
+            element.Clear();
+            element.SendKeys(text);
+            
+            Assert.AreNotEqual(oldText, text);           
+            return text;
         }
 
         protected bool AssertText(By by, string expectedText)
