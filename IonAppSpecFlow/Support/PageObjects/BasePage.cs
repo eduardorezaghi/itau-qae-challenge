@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium.Enums;
+using System.Text.RegularExpressions;
 
 namespace IonAppSpecFlow.StepDefinitions
 {
@@ -23,6 +24,20 @@ namespace IonAppSpecFlow.StepDefinitions
         protected void ClickElement(By by)
         {
             driver.FindElement(by).Click();
+        }
+
+        protected bool AssertText(By by, string expectedText)
+        {
+            string actualText = driver.FindElement(by).Text;
+            Assert.AreEqual(expectedText, actualText);
+            return true;
+        }
+
+        protected bool AssertText(By by, Regex expectedText)
+        {
+            string actualText = driver.FindElement(by).Text;
+            Assert.IsTrue(expectedText.IsMatch(actualText));
+            return true;
         }
 
         protected bool IsElementDisplayed(By by)
