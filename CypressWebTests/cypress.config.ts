@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { defineConfig } from "cypress";
-import viteProcessor from "cypress-vite";
 
 export default defineConfig({
   e2e: {
@@ -9,8 +8,6 @@ export default defineConfig({
     testIsolation: true,
     video: false,
     screenshotOnRunFailure: false,
-    setupNodeEvents(on, config) {
-      on('file:preprocessor', viteProcessor())
-    },
+    setupNodeEvents(on, config) {},
   },
 });
