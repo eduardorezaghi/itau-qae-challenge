@@ -67,7 +67,7 @@ namespace IonAppSpecFlow.StepDefinitions
         {
             try
             {
-                return driverWait.Until(driver => driver.FindElement(by).Displayed);
+                return WaitForElement(by).Displayed;
             }
             catch (WebDriverException)
             {
