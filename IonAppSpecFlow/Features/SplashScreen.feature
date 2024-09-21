@@ -1,4 +1,5 @@
-﻿#language:pt
+﻿#encoding: UTF-8
+#language:pt
 
 Funcionalidade: Tela inicial
 Dado que eu desejo interagir com o sistema,
