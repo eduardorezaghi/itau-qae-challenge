@@ -2,6 +2,9 @@
 #language:pt
 
 Funcionalidade: Tela de Login
+Dado que eu desejo interagir com o sistema
+E eu desejo acessar as funcionalidades do App
+Então eu devo ser capaz de realizar as ações básicas da tela de login
 
 @smoke
 Cenário: Validar componentes da tela de login
@@ -13,20 +16,6 @@ Cenário: Validar componentes da tela de login
     Então os campos de agência, conta e senha devem estar presentes na tela
     E o botão esqueci minha senha deve estar presente na tela, porém inibido
 
-@smoke
-Cenário: Validar botão voltar
-    Dado que esteja na tela de login
-    E desejo validar o botão voltar
-    Quando clicar no botão voltar
-    Então o usuário é redirecionado para tela inicial
-
-@smoke
-Cenário: Validar botão esqueci minha senha
-    Dado que esteja na tela de login
-    E desejo validar o botão esqueci minha senha
-    Quando clicar no botão esqueci minha senha
-    Então o usuário é redirecionado para tela de recuperação de senha
-
 @smoke @login @negative
 Cenário: Validar login com agência e conta inválida
     Dado que esteja na tela de login
@@ -35,7 +24,7 @@ Cenário: Validar login com agência e conta inválida
     Então uma mensagem de erro deve ser exibida
     E valide a mensagem exibida
 
- 
+@smoke 
 Cenário: Validar ícone de ajuda
     Dado que esteja na tela de login
     E desejo validar o ícone de ajuda

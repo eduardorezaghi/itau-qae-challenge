@@ -3,6 +3,8 @@
 
 Funcionalidade: Tela inicial
 Dado que eu desejo interagir com o sistema,
+E eu desejo acessar as funcionalidades do App,
+Então eu devo ser capaz de realizar as ações básicas da tela inicial
 
 
 @smoke
