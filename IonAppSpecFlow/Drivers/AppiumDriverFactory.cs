@@ -24,7 +24,6 @@ namespace IonAppSpecFlow.Drivers
                 driverOptions.AddAdditionalAppiumOption("noReset", true);
 
                 _driver = new AndroidDriver(serverUri, driverOptions, TimeSpan.FromSeconds(180));
-                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             }
             return _driver;
         }
@@ -33,14 +32,16 @@ namespace IonAppSpecFlow.Drivers
         {
             if (_driver != null)
             {
-                _driver.Navigate().Back();
+                _driver.StartActivity("com.itau.investimentos", "com.itau.investimentos.launcher.LauncherActivity");
             }
         }
         public static void QuitDriver()
         {
-            if (_driver == null) return;
-            _driver.TerminateApp("com.itau.investimentos");
-            _driver.Dispose();
+            if (_driver != null)
+            {
+                _driver.TerminateApp("com.itau.investimentos");
+                _driver.Dispose();
+            }
         }
     }
 }
