@@ -10,7 +10,7 @@ namespace IonAppSpecFlow.StepDefinitions
     {
         protected readonly AndroidDriver driver;
         protected readonly WebDriverWait driverWait;
-        private readonly int DEFAULT_TIMEOUT = 10;
+        private readonly int DEFAULT_TIMEOUT = 15;
         private readonly int POLLING_INTERVAL = 250;
 
         public BasePage(AndroidDriver driver)
