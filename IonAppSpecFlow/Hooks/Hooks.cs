@@ -18,7 +18,6 @@ namespace IonAppSpecFlow.Hooks
         [BeforeScenario]
         public void BeforeScenario()
         {
-            Console.WriteLine("BeforeScenario");
             var driver = AppiumDriverFactory.InitializeDriver();
             _objectContainer.RegisterInstanceAs<AndroidDriver>(driver);
         }
@@ -32,7 +31,6 @@ namespace IonAppSpecFlow.Hooks
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            Console.WriteLine("AfterTestRun");
             AppiumDriverFactory.QuitDriver();
         }
     }
