@@ -1,9 +1,11 @@
+import { InteractionPage } from "../../classes/InteractionPage";
 import { LoginPage } from "../../classes/LoginPage";
 import { MainPage } from "../../classes/MainPage";
 
 describe('Automation Practice Site', function () {
     let mainPage: MainPage;
     let loginPage: LoginPage;
+    let interactionPage: InteractionPage;
 
     context('Dado que esteja na página principal do site', () => {
         beforeEach(() => {
@@ -32,6 +34,28 @@ describe('Automation Practice Site', function () {
                 loginPage.assertErrorMessage();
             });
         });
+
+        describe('Interagir com elementos', () => {
+            beforeEach(() => {
+                interactionPage = new InteractionPage();
+                interactionPage.visitPage(InteractionPage.URL);
+            });
+
+            it('selecionar e validar radio button', () => {
+                interactionPage.checkRadioButton('male')
+                .then(radio => interactionPage.assertRadioButtonIsChecked(radio));
+            });
+
+            it('selecionar e validar checkbox', () => {
+                interactionPage.toggleCheckbox('Bike')
+                .then(checkbox => interactionPage.assertCheckboxIsChecked(checkbox));
+            });
+
+            it('selecionar e validar dropdown', () => {
+                interactionPage.selectDropdownOption('audi')
+                .then(dropdown => interactionPage.assertDropdownOptionIsSelected(dropdown, 'audi'));
+            });
+
         });
     });
 });
