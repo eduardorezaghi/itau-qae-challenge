@@ -8,7 +8,7 @@ The following tools will be used for the challenge:
 - [NUnit](https://nunit.org/) for general testing framework
 - [Appium](http://appium.io/) for mobile automation
 - [Cypress](https://www.cypress.io/) for web automation
-- [RestSharp](https://restsharp.dev/) for API automation
+- [HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-6.0) for REST API tests, using C# with NUnit and an Adapter for HttpClient
 
 
 
@@ -22,6 +22,8 @@ The following tools will be used for the challenge:
   - [Cypress (Web Automation) - TypeScript](#cypress-web-automation---typescript)
     - [Requirements](#requirements-1)
     - [Running the tests](#running-the-tests-1)
+  - [REST API tests (NUnit)](#rest-api-tests-nunit)
+    - [Requirements](#requirements-2)
 
 
 ## Appium C# with Specflow
@@ -91,7 +93,6 @@ make test_appium
 This will run the tests in the emulator.
 
 
-
 ## Cypress (Web Automation) - TypeScript
 ### Requirements
 - [Node.js](https://nodejs.org/en/)
@@ -122,5 +123,33 @@ typescript-eslint 8.6.0
 To run the tests, use the following command:
 ```bash
 make test_cypress
-# Or pnpm run cypress:open
+# Or pnpm run test
 ```
+
+
+## REST API tests (NUnit)
+### Requirements
+I used the following tools for the REST API tests:
+- [Dotnet 8.0](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
+
+With the dependencies bellow:
+```
+   > coverlet.collector          6.0.0        6.0.0
+   > FluentAssertions            6.12.1       6.12.1
+   > Microsoft.NET.Test.Sdk      17.8.0       17.8.0
+   > Newtonsoft.Json             13.0.3       13.0.3
+   > NUnit                       3.14.0       3.14.0
+   > NUnit.Analyzers             3.9.0        3.9.0
+   > NUnit3TestAdapter           4.5.0        4.5.0
+```
+
+Install the dependencies with the following command:
+```bash
+make dotnet_restore
+```
+
+Then, run the tests with the following command:
+```bash
+make test_nunit
+```
+This will run the tests in the terminal.
