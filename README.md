@@ -101,6 +101,22 @@ To run the tests, first install the dependencies with the following command:
 ```bash
 make cypress_install
 ```
+The following packages are defined in the [package.json](CypressWebTests/package.json) file:
+```
+CypressWebTests@1.0.0 itau-qae-challenge/CypressWebTests
+
+dependencies:
+cypress 13.14.2
+
+devDependencies:
+@eslint/js 9.11.0
+@types/eslint__js 8.42.3
+eslint 9.11.0
+eslint-plugin-cypress 3.5.0
+typescript 5.6.2
+typescript-eslint 8.6.0
+```
+
 
 ### Running the tests
 To run the tests, use the following command:
