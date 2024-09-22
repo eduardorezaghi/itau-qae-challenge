@@ -14,8 +14,6 @@ test_appium: dotnet_build
 dotnet_appium_clean:
 	dotnet clean $(PROJECT_FILE)
 
-clean: dotnet_clean
-
 dotnet_restore_nunit:
 	dotnet restore $(NUNIT_PROJECT_FILE)
 
@@ -29,3 +27,20 @@ dotnet_clean_nunit:
 	dotnet clean $(NUNIT_PROJECT_FILE)
 
 dotnet_clean: dotnet_appium_clean dotnet_clean_nunit
+
+check_pnpm:
+	@command -v pnpm >/dev/null 2>&1 || { echo >&2 "pnpm is required but it's not installed.  Aborting."; exit 1; }
+
+cypress_install: check_pnpm
+	cd CypressWebTests; pnpm install
+
+test_cypress: cypress_install
+	cd CypressWebTests; env NODE_OPTIONS=--no-warnings pnpm run test
+
+cypress_open: cypress_install
+	cd CypressWebTests; pnpm exec cypress open
+
+cypress_clean:
+	cd CypressWebTests; pnpm -r exec rm -rf node_modules
+
+clean: dotnet_clean cypress_clean

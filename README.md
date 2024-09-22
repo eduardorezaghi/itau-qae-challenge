@@ -8,7 +8,7 @@ The following tools will be used for the challenge:
 - [NUnit](https://nunit.org/) for general testing framework
 - [Appium](http://appium.io/) for mobile automation
 - [Cypress](https://www.cypress.io/) for web automation
-- [RestSharp](https://restsharp.dev/) for API automation
+- [HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-6.0) for REST API tests, using C# with NUnit and an Adapter for HttpClient
 
 
 
@@ -19,8 +19,11 @@ The following tools will be used for the challenge:
     - [Requirements](#requirements)
     - [Mapping the application elements](#mapping-the-application-elements)
     - [Running the tests](#running-the-tests)
-  - [REST API tests (NUnit)](#rest-api-tests-nunit)
+  - [Cypress (Web Automation) - TypeScript](#cypress-web-automation---typescript)
     - [Requirements](#requirements-1)
+    - [Running the tests](#running-the-tests-1)
+  - [REST API tests (NUnit)](#rest-api-tests-nunit)
+    - [Requirements](#requirements-2)
 
 
 ## Appium C# with Specflow
@@ -88,6 +91,40 @@ make test_appium
 # or dotnet test --property:WarningLevel=0
 ```
 This will run the tests in the emulator.
+
+
+## Cypress (Web Automation) - TypeScript
+### Requirements
+- [Node.js](https://nodejs.org/en/)
+- [pnpm](https://pnpm.io/)
+
+To run the tests, first install the dependencies with the following command:
+```bash
+make cypress_install
+```
+The following packages are defined in the [package.json](CypressWebTests/package.json) file:
+```
+CypressWebTests@1.0.0 itau-qae-challenge/CypressWebTests
+
+dependencies:
+cypress 13.14.2
+
+devDependencies:
+@eslint/js 9.11.0
+@types/eslint__js 8.42.3
+eslint 9.11.0
+eslint-plugin-cypress 3.5.0
+typescript 5.6.2
+typescript-eslint 8.6.0
+```
+
+
+### Running the tests
+To run the tests, use the following command:
+```bash
+make test_cypress
+# Or pnpm run test
+```
 
 
 ## REST API tests (NUnit)
