@@ -41,6 +41,6 @@ cypress_open: cypress_install
 	cd CypressWebTests; pnpm exec cypress open
 
 cypress_clean:
-	cd CypressWebTests; pnpm exec rimraf node_modules
+	cd CypressWebTests; npx -y rimraf node_modules
 
 clean: dotnet_clean cypress_clean

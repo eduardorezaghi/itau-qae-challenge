@@ -3,12 +3,14 @@
 This repo will hold all examples for Itaú SDET Challenge.
 The following tools will be used for the challenge:
 - [Makefile](https://www.gnu.org/software/make/manual/make.html) for automation of tasks
-- [Python](https://www.python.org/) for minor automation (alongside with Makefile)
-- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) as the main language for the challenge
+- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) language for the Appium/REST API tests
+- [TypeScript](https://www.typescriptlang.org/) language for the Cypress tests
+- [Gherkin](https://cucumber.io/docs/gherkin/) for BDD writing
+- [SpecFlow](https://specflow.org/) for BDD automation
 - [NUnit](https://nunit.org/) for general testing framework
 - [Appium](http://appium.io/) for mobile automation
 - [Cypress](https://www.cypress.io/) for web automation
-- [HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-6.0) for REST API tests, using C# with NUnit and an Adapter for HttpClient
+- [HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-8.0) for REST API tests, using C# with NUnit and an Adapter for HttpClient
 
 
 
@@ -29,6 +31,7 @@ The following tools will be used for the challenge:
 ## Appium C# with Specflow
 ### Requirements
 I used the following tools for the Appium C# IonAppSpecFlow project:
+- [Dotnet 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [Appium](http://appium.io/)
 - [Android Studio](https://developer.android.com/studio)
 - [Visual Studio](https://visualstudio.microsoft.com/pt-br/) or [Visual Studio Code](https://code.visualstudio.com/) with C# extension
@@ -114,6 +117,7 @@ devDependencies:
 @types/eslint__js 8.42.3
 eslint 9.11.0
 eslint-plugin-cypress 3.5.0
+rimraf 6.0.1
 typescript 5.6.2
 typescript-eslint 8.6.0
 ```
