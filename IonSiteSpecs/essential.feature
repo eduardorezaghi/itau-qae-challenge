@@ -15,6 +15,7 @@ Cenário: Acessar botões da barra de navegação
     Quando o usuário acessa a barra de navegação
     E clica no botão <botão>
     Então o usuário é redirecionado para a página <página>
+    E os elementos da página <página> devem estar visíveis
     Exemplos:
         | botão              | página                            |
         | "investimentos"    | "https://ion.itau/investimentos"  |
@@ -22,11 +23,11 @@ Cenário: Acessar botões da barra de navegação
         | "educação"         | "https://ion.itau/educacao"       |
         | "notícias"         | "https://ion.itau/blog"           |
         | "abra sua conta"   | "https://ion.itau/abra-sua-conta" |
-        | "entrar"           | "https://web.ion.itau/"           |
+        | "entrar"           | "https://id.itau.com.br/"         |
 
 
 Cenário: Navegar pelo carrossel de banners
-    Quando o usuário acessa a tela inicial
+    Quando o usuário acessa o carrossel de banners
     E clica nas setas de navegação <direção> do carrossel
     Então o usuário deve visualizar o banner seguinte/anterior
     Exemplos:
@@ -60,6 +61,6 @@ Cenário: Acessar links de políticas de privacidade
     E clica no botão <botão>
     Então o usuário é redirecionado para a página de política de privacidade
     Exemplos:
-        | botão              |
-        | "política de privacidade" |
-        | "termos de uso"    |
+        | botão                       |
+        | "política de privacidade"   |
+        | "termos de uso"             |
