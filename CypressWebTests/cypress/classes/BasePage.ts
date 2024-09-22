@@ -1,4 +1,6 @@
 export class BasePage {
+    protected static URL?: string;
+
     public visitPage(url: string): void {
         cy.visit(url);
     }
