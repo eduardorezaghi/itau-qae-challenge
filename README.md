@@ -19,6 +19,9 @@ The following tools will be used for the challenge:
     - [Requirements](#requirements)
     - [Mapping the application elements](#mapping-the-application-elements)
     - [Running the tests](#running-the-tests)
+  - [Cypress (Web Automation) - TypeScript](#cypress-web-automation---typescript)
+    - [Requirements](#requirements-1)
+    - [Running the tests](#running-the-tests-1)
 
 
 ## Appium C# with Specflow
@@ -87,3 +90,21 @@ make test_appium
 ```
 This will run the tests in the emulator.
 
+
+
+## Cypress (Web Automation) - TypeScript
+### Requirements
+- [Node.js](https://nodejs.org/en/)
+- [pnpm](https://pnpm.io/)
+
+To run the tests, first install the dependencies with the following command:
+```bash
+make cypress_install
+```
+
+### Running the tests
+To run the tests, use the following command:
+```bash
+make test_cypress
+# Or pnpm run cypress:open
+```
