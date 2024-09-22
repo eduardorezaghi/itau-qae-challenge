@@ -28,5 +28,12 @@ namespace NUnitBackendTests.Adapters
 
             return await _httpClient.GetAsync(BaseUrl + url);
         }
+
+        public async Task<HttpResponseMessage> PutAsync(string url, object content)
+        {
+            var json = JsonConvert.SerializeObject(content);
+            var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            return await _httpClient.PutAsync(url, stringContent);
+        }
     }
 }
