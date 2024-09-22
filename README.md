@@ -17,6 +17,8 @@ The following tools will be used for the challenge:
 ## Table of Contents
 - [itau-qae-challenge](#itau-qae-challenge)
   - [Table of Contents](#table-of-contents)
+  - [Ion site feature files (Gherkin)](#ion-site-feature-files-gherkin)
+    - [Test reporting workflow](#test-reporting-workflow)
   - [Appium C# with Specflow](#appium-c-with-specflow)
     - [Requirements](#requirements)
     - [Mapping the application elements](#mapping-the-application-elements)
@@ -26,6 +28,69 @@ The following tools will be used for the challenge:
     - [Running the tests](#running-the-tests-1)
   - [REST API tests (NUnit)](#rest-api-tests-nunit)
     - [Requirements](#requirements-2)
+
+
+---
+
+
+
+## Ion site feature files (Gherkin)
+The [IonSiteSpecs](/IonSiteSpecs/) folder will contain the .feature files for https://ion.itau/ site.  
+These files will be used to declare the user stories and scenarios for the site.
+
+### Test reporting workflow
+_(The section bellow will be written in Portuguese)_
+
+"Se houvesse um bug, como você reportaria o mesmo?"
+
+Eu reportaria quaisquer bugs encontrados no site [Ion](https://ion.itau/) da seguinte forma:
+Primeiramente, eu documentaria o bug em um arquivo de texto, com o máximo de detalhes possíveis, incluindo:
+  - Descrição do bug
+  - Passos para reproduzir o bug
+  - Resultado esperado
+  - Resultado obtido
+  - Screenshots ou vídeos do bug
+  - Informações do ambiente (Sistema operacional, navegador, etc), caso aplicáveis.
+  - Pilha de exceção (stack trace), caso aplicável.
+
+Depois, eu iria registrar o bug em algum sistema de gerenciamento de bugs,  
+como o [Jira](https://www.atlassian.com/software/jira),[Mantis](https://www.mantisbt.org/), [Bugzilla](https://www.bugzilla.org/), ou qualquer outro sistema utilizado pela empresa.
+
+No caso, já tenho um exemplo de bug reportado no Bugzilla. Veja [aqui](https://bugzilla.mozilla.org/show_bug.cgi?id=1903881).
+
+No Jira, eu uso um workflow muito parecido com [este](https://community.atlassian.com/t5/Jira-articles/How-to-write-a-useful-Jira-ticket/ba-p/2147004).  
+O ponto crucial nos bugs reports que escrevo é a seção de "Critérios de Aceite", onde descrevo o que é esperado para que o bug seja considerado resolvido.
+Outros pontos adicionais são o contexto do problema, descrição detalhada do problema e passos para reproduzi-lo.
+
+Exemplo de bug report que escreveria
+```markdown
+## Contexto
+Ao acessar a página de login do site Ion, ao clicar no botão "Abrir conta", o botão não redireciona para a página de cadastro.
+
+## Descrição
+Foi identificado, no dia 15/09/2024, que o botão "Abrir conta" da página de login do site Ion não redireciona para a página de cadastro, como esperado.
+Foram utilizados os seguintes navegadores/dispositivos para reprodução deste bug:
+- Google Chrome 129.0.6668.58/59 (Windows 10)
+- Mozilla Firefox 130.0.1 (Ubuntu 22.04)
+- Google Chrome 129.0.6668.58/59 (Android 13)
+- Safari 15.3 (iOS 15) (iPhone 13)
+
+### Problemas
+- O botão não redireciona para a página de cadastro
+- Os usuários não conseguem prosseguir na jornada essencial do site
+
+### Passos para reproduzir
+1. Acesse o site https://ion.itau/
+2. Clique no botão "Abrir conta"
+3. Verifique que o botão não redireciona para a página de cadastro
+
+## Critérios de Aceite
+- O botão "Abrir conta" deve redirecionar para a página de cadastro
+- O botão deve estar visível e clicável
+- O botão deve estar funcional em todos os navegadores suportados
+
+```
+
 
 
 ## Appium C# with Specflow
