@@ -19,6 +19,8 @@ The following tools will be used for the challenge:
     - [Requirements](#requirements)
     - [Mapping the application elements](#mapping-the-application-elements)
     - [Running the tests](#running-the-tests)
+  - [REST API tests (NUnit)](#rest-api-tests-nunit)
+    - [Requirements](#requirements-1)
 
 
 ## Appium C# with Specflow
@@ -87,3 +89,30 @@ make test_appium
 ```
 This will run the tests in the emulator.
 
+
+## REST API tests (NUnit)
+### Requirements
+I used the following tools for the REST API tests:
+- [Dotnet 8.0](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
+
+With the dependencies bellow:
+```
+   > coverlet.collector          6.0.0        6.0.0
+   > FluentAssertions            6.12.1       6.12.1
+   > Microsoft.NET.Test.Sdk      17.8.0       17.8.0
+   > Newtonsoft.Json             13.0.3       13.0.3
+   > NUnit                       3.14.0       3.14.0
+   > NUnit.Analyzers             3.9.0        3.9.0
+   > NUnit3TestAdapter           4.5.0        4.5.0
+```
+
+Install the dependencies with the following command:
+```bash
+make dotnet_restore
+```
+
+Then, run the tests with the following command:
+```bash
+make test_nunit
+```
+This will run the tests in the terminal.
