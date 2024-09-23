@@ -166,6 +166,15 @@ This will run the tests in the emulator.
 - [Node.js](https://nodejs.org/en/)
 - [pnpm](https://pnpm.io/)
 
+To install pnpm, you can use `npm` with the following command:
+```bash
+npm install -g pnpm
+```
+If you use volta, you can install pnpm with the following command:
+```bash
+volta install pnpm
+```
+
 To run the tests, first install the dependencies with the following command:
 ```bash
 make cypress_install
