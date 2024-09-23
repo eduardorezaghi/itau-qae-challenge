@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
@@ -5,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace IonAppSpecFlow.StepDefinitions
 {
-    public class LoginPage : BasePage
+    public partial class LoginPage : BasePage
     {
         private readonly By pageTitle = MobileBy.Id("com.itau.investimentos:id/titleTextView");
         private readonly By backButton = MobileBy.Id("com.itau.investimentos:id/backButton");
@@ -18,6 +19,12 @@ namespace IonAppSpecFlow.StepDefinitions
         // Error elements
         private readonly By errorSnackbar = MobileBy.Id("com.itau.investimentos:id/errorView");
         private readonly By errorTextView = MobileBy.Id("com.itau.investimentos:id/errorMessageTextView");
+
+        // Regexes
+        [GeneratedRegex("acesso à conta", RegexOptions.IgnoreCase, "pt-BR")]
+        private static partial Regex AccountAccessRegex();
+        [GeneratedRegex("agência ou conta incorreta", RegexOptions.IgnoreCase, "pt-BR")]
+        private static partial Regex IncorrectLoginDataRegex();
 
         public LoginPage(AndroidDriver driver) : base(driver) { }
 
@@ -49,7 +56,7 @@ namespace IonAppSpecFlow.StepDefinitions
         public bool IsScreenDisplayed()
         {
             var isDisplayed = IsElementDisplayed(pageTitle);
-            var isCorrectText = AssertText(pageTitle, new Regex("acesso à conta", RegexOptions.IgnoreCase));
+            var isCorrectText = AssertText(pageTitle, AccountAccessRegex());
             return isDisplayed && isCorrectText;
         }
 
@@ -60,14 +67,19 @@ namespace IonAppSpecFlow.StepDefinitions
 
         public bool? AssertFieldsAreDisplayed()
         {
-            foreach (By field in new[] { agencyField, accountField, accountPasswordField })
+            var fields = new[] { agencyField, accountField, accountPasswordField };
+            var displayedFields = fields.Select(IsElementDisplayed).ToList();
+
+            try
             {
-                if (!IsElementDisplayed(field))
-                {
-                    return false;
-                }
+                CollectionAssert.AllItemsAreNotNull(displayedFields);
+                CollectionAssert.DoesNotContain(displayedFields, false);
+                return true;
             }
-            return true;
+            catch (AssertionException)
+            {
+                return false;
+            }
         }
 
         public bool? AssertForgotPasswordButtonIsDisplayedAndDisabled()
@@ -84,7 +96,7 @@ namespace IonAppSpecFlow.StepDefinitions
             switch (label)
             {
                 case "acesso à conta":
-                    return AssertText(pageTitle, new Regex("acesso à conta", RegexOptions.IgnoreCase));
+                    return AssertText(pageTitle, AccountAccessRegex());
                 default:
                     throw new ArgumentException($"Label '{label}' is not recognized");
             }
@@ -98,7 +110,7 @@ namespace IonAppSpecFlow.StepDefinitions
         public bool? AssertInvalidLoginData()
         {
             var isError = IsElementDisplayed(errorSnackbar);
-            var isValidErrorMessage = AssertText(errorTextView, new Regex("agência ou conta incorreta", RegexOptions.IgnoreCase));
+            var isValidErrorMessage = AssertText(errorTextView, IncorrectLoginDataRegex());
 
             return isError && isValidErrorMessage;
 

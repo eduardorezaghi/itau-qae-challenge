@@ -25,7 +25,7 @@ namespace IonAppSpecFlow.StepDefinitions
             ClickElement(createAccountButton);
         }
 
-        public bool IsSplashScreenDisplayed()
+        public bool IsScreenDisplayed()
         {
             return IsElementDisplayed(pageLogo);
         }

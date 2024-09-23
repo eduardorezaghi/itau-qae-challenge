@@ -8,7 +8,6 @@ namespace IonAppSpecFlow.StepDefinitions
     public sealed class SplashScreenStepDefinitions
     {
         private readonly IObjectContainer _container;
-        private readonly ScenarioContext _scenarioContext;
         private readonly AndroidDriver _driver;
         private SplashPage _splashPage;
         private LoginPage _loginPage;
@@ -29,7 +28,7 @@ namespace IonAppSpecFlow.StepDefinitions
         [Given("que esteja na tela principal do App")]
         public void GivenUserIsInSplashScreen()
         {
-            Assert.IsTrue(_splashPage.IsSplashScreenDisplayed());
+            Assert.IsTrue(_splashPage.IsScreenDisplayed());
         }
 
         [When("clicar em (.*)")]
@@ -54,16 +53,13 @@ namespace IonAppSpecFlow.StepDefinitions
         {
             switch(screen.ToLower()) {
                 case "tela inicial":
-                    Assert.IsTrue(_splashPage.IsSplashScreenDisplayed());
+                    Assert.IsTrue(_splashPage.IsScreenDisplayed());
                     break;
                 case "tela de login":
                     Assert.IsTrue(_loginPage.IsScreenDisplayed());
                     break;
                 case "tela de abertura de conta":
                     Assert.IsTrue(_createAccountPage.IsScreenDisplayed());
-                    break;
-                case "tela de recuperação de senha":
-                    Assert.IsTrue(true);
                     break;
                 case "tela de central de ajuda":
                     Assert.IsTrue(_helpCenterPage.IsScreenDisplayed());

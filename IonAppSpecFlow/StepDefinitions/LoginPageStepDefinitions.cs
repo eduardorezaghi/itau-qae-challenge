@@ -8,13 +8,11 @@ namespace IonAppSpecFlow.StepDefinitions
     public sealed class LoginPageStepDefinitions
     {
         private readonly IObjectContainer _container;
-        private readonly ScenarioContext _scenarioContext;
         private readonly AndroidDriver _driver;
         private SplashPage _splashPage;
         private LoginPage _loginPage;
-        private CreateAccountPage _createAccountPage;
-        private string _button;
-        private string _icon;
+        private string? _button;
+        private string? _icon;
 
         public LoginPageStepDefinitions(IObjectContainer objectContainer)
         {
@@ -22,9 +20,7 @@ namespace IonAppSpecFlow.StepDefinitions
             _driver = _container.Resolve<AndroidDriver>();
             _splashPage = new SplashPage(_driver);
             _loginPage = new LoginPage(_driver);
-            _createAccountPage = new CreateAccountPage(_driver);
         }
-
 
         [Given("que esteja na tela de login")]
         public void GivenUserIsInLoginScreen()
@@ -79,7 +75,7 @@ namespace IonAppSpecFlow.StepDefinitions
         [When("clicar no botão (.*)")]
         public void WhenUserClicks(string _)
         {
-            switch(_button.ToLower()) {
+            switch(_button?.ToLower()) {
                 case "voltar":
                     _loginPage.ClickBackButton();
                     break;
