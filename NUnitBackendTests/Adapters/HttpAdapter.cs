@@ -18,9 +18,9 @@ namespace NUnitBackendTests.Adapters
             BaseUrl = baseUrl;
         }
 
-        public async Task<HttpResponseMessage> GetAsync(string url, Dictionary<string, string> parameters = null)
+        public async Task<HttpResponseMessage> GetAsync(string url, Dictionary<string, string>? parameters = null)
         {
-            if (parameters != null && parameters.Any())
+            if (parameters?.Any() == true)
             {
                 var queryString = string.Join("&", parameters.Select(p => $"{p.Key}={p.Value}"));
                 url = $"{url}?{queryString}";
